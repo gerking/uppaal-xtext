@@ -16,7 +16,13 @@
 
 	<name>uppaal-xtext-language-tests</name>
 	<description>Test plugin for uppaal language implementation.</description>
-
+	
+	<scm>
+	    <connection>scm:git:https://github.com/DEIS-Tools/uppaal-models.git</connection>
+	    <developerConnection>scm:git:https://github.com/DEIS-Tools/uppaal-models.git</developerConnection>
+	    <url>https://github.com/DEIS-Tools/uppaal-models/</url>
+	</scm>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -39,6 +45,27 @@
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-scm-plugin</artifactId>
+		        <version>2.1.0</version>
+				<configuration>
+                	<connectionType>connection</connectionType>
+                	<checkoutDirectory>${project.basedir}/res/tests/uppaal-models</checkoutDirectory>
+					<scmVersion>main</scmVersion>
+					<scmVersionType>branch</scmVersionType>
+            	</configuration>
+				<executions>
+					<execution>
+						<id>checkout-uppaal-models</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+        			</execution>
+  				</executions>
+      		</plugin>
 		</plugins>
 	</build>
 </project>
