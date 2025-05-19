@@ -599,7 +599,7 @@ ScopedIdentifierExpression returns expressions::Expression:
 // Terminating Expressions
 TerminatingExpressions returns expressions::Expression:
 // TODO: make forall (...) foall (...) <EXPR> parsabe ...
-	DeadLockExpression | IdentifierExpression | FunctionCallExpression | LiteralExpression | ('(' Expression ')')//	IdentifierExpression | FunctionCallExpression | LiteralExpression | ('(' Expression ')')
+	DeadLockExpression | IdentifierExpression | CallExpression | LiteralExpression | ('(' Expression ')')//	IdentifierExpression | CallExpression | LiteralExpression | ('(' Expression ')')
 ;
 
 DeadLockExpression returns expressions::Deadlock:
@@ -612,8 +612,8 @@ LiteralExpressionText returns ecore::EString:
 	'true' | 'false' | ('-'? INT);
 
 // Function Calls
-FunctionCallExpression returns expressions::FunctionCallExpression:
-	function=[declarations::Function|UPPAAL_IDENTIFIER]
+CallExpression returns expressions::CallExpression:
+	callee=[declarations::Function|UPPAAL_IDENTIFIER]
 	'('
 	(argument+=Expression
 	(',' argument+=Expression)*)?
